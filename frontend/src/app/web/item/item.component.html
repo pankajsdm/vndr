@@ -1,0 +1,72 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb mt-3">
+      <li class="breadcrumb-item"><a href="javascript:void(0)">Japanese Cuisine</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Catering</li>
+    </ol>
+  </nav>
+
+  <div class="booking_banner my-3">
+    <img *ngIf="services.image==''" src="../../../assets/images/booking_banner.png" alt="Banner"/>
+    <img *ngIf="services.image!=''" src="{{backendUrl}}items/{{services._id}}/{{services.image}}" alt="{{services.image}}"/>
+  </div>
+  <h2 class="my-3">{{services.name}}</h2>
+  <p>{{services.description}}</p>
+  <div *ngFor="let item of services.items">
+    <!-- <div class="booking_slider mt-5" *ngIf="item.images">
+        <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide *ngFor="let imgFile of item.images">
+              <img src="{{backendUrl}}packages/{{services._id}}/{{imgFile}}" alt="{{imgFile}}" /> 
+            </ng-template>
+        </owl-carousel-o>
+    </div> -->
+    
+    <div class="item_price py-4 mb-3" >
+      <div class="form-check">
+        <form>
+        <input class="form-check-input" type="checkbox" name="exampleRadios" id="{{item._id}}" [checked]="item.isChecked" value="{{item._id}}" (change)="cartUpdate(item,$event.target.checked,services._id,services.image,services.name,services.slug,services.description,services.packageDirectory,services.itemDirectory,services.vendorId._id,services.vendorId.companyName,services)">
+        <em></em>
+        <label class="form-check-label" for="exampleRadios1">
+         {{item.name}}
+        </label>
+      </form>
+      </div>
+      <span>${{item.price}}</span>
+    </div>
+    <p class="description_text mt-3 mb-4">{{item.desc}}</p>
+  </div>
+
+ 
+  <!-- <div class="booking_slider mt-5">
+      <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide>
+            <img src="../../../assets/images/package.png" alt="" /> 
+          </ng-template>  
+        </owl-carousel-o>
+  </div>
+
+  <div class="item_price py-4 mb-3">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+      <label class="form-check-label" for="exampleRadios1">Package2 Name</label>
+    </div>
+    <span>$200</span>
+  </div>
+
+  <p class="description_text mt-3 mb-4">Package Description</p> -->
+
+
+  <!-- <h3 class="item_price py-4 mb-4">
+    Special Instructions
+  </h3>
+  <p>
+    <small>
+    <textarea class="form-check-input" type="textarea" [(ngModel)]="specialInstruction"></textarea>
+    </small> 
+  </p> -->
+<div class="d-flex justify-content-end my-5">
+  <a class="book_now btn btn-lg" (click)="addItemsToFinalCart()">Add Items</a>
+</div>
+  
+</div>
+

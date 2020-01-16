@@ -1,0 +1,154 @@
+<div class="page-breadcrumb-frame clearfix">
+  <div class="float-left">
+    <h1 class="text-muted">Profile</h1>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"> <a [routerLink]="['/vendors/dashboard']"> Dashboard</a> </li>
+      <li class="breadcrumb-item active"><i class="pi pi-chevron-right"></i><a
+          [routerLink]="['/vendors/profile']">Profile</a></li>
+      <li *ngIf="userDetails && isEditable" class="breadcrumb-item active"><i class="pi pi-chevron-right"></i> Edit
+        Profile</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="userDetails && !isEditable">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="well well-sm">
+        <div class="row">
+          <div class="col-sm-6 col-md-3">
+            <img *ngIf="filename==''" src="/assets/images/no-avtar.png" alt="" width="250" height="200"
+              class="img-rounded img-responsive" />
+            <img *ngIf="filename!=''" [src]="filename" alt="" width="250" height="200" class="img-rounded img-responsive" />
+            <p-fileUpload #fileUpload accept="image/*" auto="true" [styleClass]="pupload" mode="basic" name="myfile[]"
+              id="myFiles" name="myFiles" customUpload="true" (uploadHandler)="onFileSelection($event, fileUpload)"
+              chooseLabel="Change Profile Picture"></p-fileUpload>
+          </div>
+
+          <div class="col-sm-6 col-md-7">
+            <h4>{{userDetails.companyName ?userDetails.companyName:'-' }}</h4>
+            <p>
+              <strong>Category: </strong>{{userDetails.categoryId.name}}<br>
+              <strong>Subcategory: </strong>{{userDetails.subcategoryId.name}}<br>
+              <strong>Number of Booking: </strong>{{userDetails.numberOfBooking}}<br>
+              <strong>Email: </strong>{{userDetails.email ?userDetails.email:'-' }}<br>
+              <strong>Phone: </strong>{{userDetails.phoneNumber ?userDetails.phoneNumber:'-' }}<br>
+              <strong>Location: </strong>{{userDetails.geoLocation ?userDetails.geoLocation.formattedAddress:'-' }}<br>
+              <br>
+            </p>
+          </div>
+
+          <div class="col-sm-6 col-md-2">
+            <a [routerLink]="['/vendors/profile/update/' + userDetails._id]"> Edit Profile</a>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <h4></h4>
+            <p>{{userDetails.aboutMe ?userDetails.aboutMe:'-' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<form [formGroup]="userForm" enctype="multipart/form-data">
+  <div class="row" *ngIf="userDetails && isEditable">
+    <div class="col-lg-12">
+      <div class="row">
+        
+        <div class="col-lg-6">
+          <fieldset class="form-group">
+            <div class="form-group">
+              <label for="disabledSelect">Company Name</label>
+              <input type="text" class="form-control input-underline input-lg" placeholder="{{ 'Company Name ' }}"
+                appInputRestriction="noSpecialChars" formControlName="companyName" required>
+              <p class="error" *ngIf="userForm.controls['companyName'].hasError('required') && isSubmited">Company Name
+                is required</p>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-lg-6">
+          <fieldset class="form-group">
+            <div class="form-group">
+              <label for="disabledSelect">Number of Booking</label>
+              <input type="text" class="form-control input-underline input-lg" placeholder="{{ 'Number of booking' }}"
+                formControlName="numberOfBooking" required>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-lg-6">
+          <fieldset class="form-group">
+            <div class="form-group">
+              <label for="disabledSelect">Category</label>
+              <input type="text" value="{{userDetails.categoryId.name}}" class="form-control input-underline input-lg"
+                readonly>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-lg-6">
+          <fieldset class="form-group">
+            <div class="form-group">
+              <label for="disabledSelect">Sub-Category</label>
+              <input type="text" value="{{userDetails.subcategoryId.name}}"
+                class="form-control input-underline input-lg" readonly>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-lg-6">
+          <fieldset class="form-group">
+            <div class="form-group">
+              <label for="disabledSelect">Phone Number</label>
+              <p-inputMask type="text" class="form-control  input-lg" placeholder="{{ 'Phone Number ' }}"
+                mask="(999) 999-9999" formControlName="phoneNumber" appInputRestriction="integerOnly" required
+                maxlength="15"></p-inputMask>
+              <p class="error" *ngIf="userForm.controls['phoneNumber'].hasError('required') && isSubmited">Phone Number
+                is required</p>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-lg-6">
+          <fieldset class="form-group">
+            <div class="form-group">
+              <label for="disabledSelect">Description</label>
+              <textarea type="text" class="form-control input-underline input-lg" placeholder="{{ 'About Me' }}"
+                formControlName="aboutMe" required></textarea>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row" *ngIf="userDetails && isEditable">
+  <div class="col-lg-6">
+    <fieldset class="form-group">
+      <div class="form-group">
+        <label for="disabledSelect">Location</label>
+        <mat-google-maps-autocomplete class="form-control input-underline input-lg" type="address"
+          [addressLabelText]="formated_address" (onAutocompleteSelected)="onAutocompleteSelected($event)">
+        </mat-google-maps-autocomplete>
+
+      </div>
+    </fieldset>
+  </div>
+  <div class="col-lg-8">
+    <div class="row">
+      <div class="col-lg-1">
+        <button mat-stroked-button type="button" class="btn btn-primary"
+          (click)="save()">{{ isEditable ? "Update" : 'Create' }}</button>
+      </div>
+      <div class="col-lg-2">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary"
+          [routerLink]="['/vendors/profile']">{{"Back"}}</button> &nbsp;
+      </div>
+    </div>
+  </div>
+</div>

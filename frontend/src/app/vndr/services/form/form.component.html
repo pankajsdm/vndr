@@ -1,0 +1,169 @@
+<div [@routerTransition]>
+  <div class="page-breadcrumb-frame d-flex justify-content-between align-items-center">
+    <div class="link-content">
+      <h1 class="text-muted">Items</h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/vendors/dashboard']">Home</a></li>
+        <li class="breadcrumb-item active"><i class="pi pi-chevron-right"></i> <a
+            [routerLink]="['/vendors/services']">Items</a></li>
+        <li class="breadcrumb-item active"><i class="pi pi-chevron-right"></i>{{ isEditable ? "Update" : 'Add' }} Items</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="serviceForm" class="services-crud">
+  <div class="row">
+
+    <div class="col-lg-12">
+      <div class="row">
+
+        <div class="col-lg-6">
+          <fieldset class="form-group">
+            <label>Item Name<em>*</em></label>
+            <input appInputRestriction="noSpecialChars" formControlName="name" class="form-control" placeholder="Enter service name">
+            <p class="fieldRequired" *ngIf="isSubmitted && serviceForm.controls['name'].hasError('required')">Item name is required</p>
+          </fieldset>
+        </div>
+
+        <div class="col-lg-5">
+          <fieldset class="form-group">
+            <div class="form-group">
+              <label for="disabledSelect">Select Section<em>*</em></label>
+              <select formControlName="sectionId" class="form-control">
+                <option [value]="section._id" *ngFor="let section of sectionArr">{{section.name}}</option>
+              </select>
+              <p class="fieldRequired" *ngIf="isSubmitted && serviceForm.controls['sectionId'].hasError('required')">Please add section</p>
+            </div>
+          </fieldset>
+          
+        </div>
+        <div class="col-lg-1 section-cls">
+            <a [routerLink]="['/vendors/sections/add']" title="Add Section"><i class="pi pi-plus-circle"></i></a>
+        </div>
+
+        
+
+        <div class="col-lg-6">
+          <fieldset class="form-group">
+            <label>Description<em>*</em></label>
+            <textarea formControlName="description" class="form-control" placeholder="Enter service description"></textarea>
+            <p class="fieldRequired" *ngIf="isSubmitted && serviceForm.controls['description'].hasError('required')">Enter some description about Item</p>
+          </fieldset>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="row">
+              <div class="col-lg-3">
+                <fieldset class="form-group">
+                  <label class="img-label">Item image</label>
+                  <div class="attachment-input mt10">
+                      <p-fileUpload #fileUpload accept="image/*" auto="true" maxFileSize="10000000"  #fubauto mode="basic" name="myfile[]" customUpload="true" (uploadHandler)="chooseItemImage($event, fileUpload)" ></p-fileUpload>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="col-lg-6" *ngIf="serviceForm.controls.attachment.value">
+                <div class="package-image">
+                  <br><img [src]="serviceForm.controls.attachment.value" alt="package-image" width="60" height="60">
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8">
+            <br><strong>Create packages for above item<hr><br></strong>
+        </div>
+      </div>
+
+
+      <div class="row package-row" formArrayName="items"
+        *ngFor="let item of serviceForm.get('items')['controls']; let i = index;">
+        <div [formGroupName]="i" class="col-lg-12">
+
+          <div class="row">
+            <div [ngClass]="(i=='0')?'col-lg-3':'col-lg-3'">
+              <fieldset class="form-group">
+                <label>Package Name<em>*</em></label>
+                <input appInputRestriction="noSpecialChars" [ngClass]="{'fieldRequired': isSubmitted && (!serviceForm.get('name').valid && serviceForm.get('name').touched )}" formControlName="name" class="form-control" placeholder="Enter package name">
+                <p class="fieldRequired" *ngIf="isSubmitted && item.hasError('required', 'name')">Package name is required</p>
+              </fieldset>
+              
+            </div>
+
+            <div [ngClass]="(i=='0')?'col-lg-3':'col-lg-3'">
+              <fieldset class="form-group">
+                <label>Price<em>*</em></label>
+                <input type="number" min="1" formControlName="price" class="form-control" placeholder="Set package price">
+                <p class="fieldRequired" *ngIf="isSubmitted && item.hasError('required', 'price')">Price is required</p>
+              </fieldset>
+            </div>
+
+            <div class="col-lg-2" *ngIf="i==0">
+              <fieldset class="form-group">
+                <label>&nbsp;</label>
+                <button type="button" class="btn btn-success form-control" (click)="addItem()" title="Add Package"> + Add Package</button>
+              </fieldset>
+            </div>
+            <div class="col-lg-2" *ngIf="i>0">
+              <fieldset class="form-group">
+                <label>&nbsp;</label>
+                <button type="button" class="btn btn-danger form-control" title="Remove Package" (click)="removeItem(i)"> - Remove Package</button>
+              </fieldset>
+            </div>
+
+            <div class="col-lg-8">
+              <fieldset class="form-group">
+                <label>Enter package description<em>*</em></label>
+                <textarea formControlName="desc" class="form-control" placeholder="Enter some description for package"></textarea>
+                <p class="fieldRequired" *ngIf="isSubmitted && item.hasError('required', 'desc')">Enter some description about package</p>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <fieldset class="form-group">
+                <label class="img-label">Please upload an image</label><br>
+                <small>(Please click on Update Items in order to save image)</small><br>
+                <div class="attachment-input mt10">
+                  <label class="file">
+                    <p-fileUpload #fileUpload accept="image/*" auto="true" [styleClass]="pupload"  mode="basic" name="myfile[]" customUpload="true" (uploadHandler)="choosePackageImage($event, i, fileUpload)" multiple="multiple"></p-fileUpload>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-12" *ngIf="serviceForm.controls.items.value[i]">
+                  <div class="package-image" *ngFor="let attchment of serviceForm.controls.items.value[i].attachment">
+                    <img [src]="attchment" alt="package-image" width="80" height="80">
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col-lg-6">
+      <button type="button" class="btn btn-primary" (click)="submitForm()">{{ isEditable ? "Update" : 'Add'}}</button> &nbsp;
+    </div> -->
+    <div class="col-lg-8">
+        <div class="row"> 
+            <div class="col-lg-1">
+                 <button type="button" class="btn btn-primary" (click)="submitForm()">{{ isEditable ? "Update" : 'Create'}}</button>
+          </div>
+          <div class="col-lg-2">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" [routerLink]="['/vendors/services']">{{"Back"}}</button>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</form>

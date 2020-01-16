@@ -1,0 +1,38 @@
+<section class="banner_section">
+
+    <div class="container">
+        <div class="row marginTop">
+          
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <p>
+                  <a routerLink="/customer/edit">Edit profile</a><br>
+                  <a routerLink="/customer/manage-address">Manage Address</a><br>
+                  <a routerLink="/customer/add-address">Add New Address</a><br>
+                </p>
+            </div>
+
+            <div class="col-md-10">
+              <div class="row">
+                <div class="col-md-5" *ngFor="let item of getUser.customerAddress">
+                    <div class="containAddress">
+                      <h2>{{item.name}}, </h2>
+                      <p>{{item.houseBuilding}}, {{item.area}}, {{item.city}}, {{item.state}}, {{item.country}}<br> {{item.pincode}}</p>
+                    
+                    <div class="actionLink">
+                        <a routerLink="/customer/manage-address/{{item._id}}"><h6>Edit Address</h6></a>
+                        <a *ngIf="item._id!=getUser.defaultCustomerAddress._id" href="javascript:void(0)" (click)="setDefault(item._id)"><h6>Set Default</h6></a>
+                        <a *ngIf="item._id!=getUser.defaultCustomerAddress._id" href="javascript:void(0)" (click)="deleteAddress(item._id)"><h6>Delete</h6></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <div class="setMinHeight"></div>
+        </div>
+
+    </div>
+</section>

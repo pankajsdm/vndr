@@ -1,0 +1,98 @@
+<div class="login-page" [@routerTransition]>
+  <div class="login-left-pannel animated fadeInLeft">
+  </div>
+
+  <div class="login-right-pannel">
+    <div class="top-corner  animated fadeInRight"></div>
+    <div class="from-frame">
+      <h1>{{ 'Sign Up as Vendor' }}</h1>
+
+      <form [formGroup]="signUpForm" (submit)="signUp()">
+        <div class="white-frame">
+          <div class="form-field-frame" >
+            <img src="../../../assets/images/icon-name.png" alt="Name" class="img-icon name-icon" />
+            <mat-form-field>
+              <input matInput formControlName="companyName" placeholder="{{ 'Company Name' }}" required
+                maxlength="100">
+              <mat-error class="error"
+                *ngIf="signUpForm.controls['companyName'].hasError('required') && isSignSubmited">
+                {{"Name is required"}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-frame">
+            <img src="../../../assets/images/email.png" alt="email" class="img-icon" />
+            <mat-form-field>
+              <input matInput type="email" formControlName="email" placeholder="{{ 'Email Address' }}"
+                required maxlength="100">
+              <mat-error class="error" *ngIf="signUpForm.controls['email'].hasError('required') && isSignSubmited">
+                {{"Email is required"}}</mat-error>
+              <mat-error class="error"
+                *ngIf="signUpForm.controls['email'].hasError('email') && signUpForm.controls['email'].value != ''">
+                {{"Invalid Email"}}</mat-error>
+              <mat-error class="error" *ngIf="signUpForm.controls['email'].hasError('maxlength') && isSignSubmited">
+                {{"Email must be of maximum 100 characters length"}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-frame passlock">
+              <img src="../../../assets/images/password.png" alt="password lock"  class="img-icon"/>
+              <mat-form-field>
+                <input matInput type= "password" formControlName="password" required placeholder="{{ 'Password' }}" maxlength="20">
+                <mat-error class="error" *ngIf="signUpForm.controls['password'].hasError('required') && isSignSubmited">{{"Password is required"}}</mat-error>
+                <mat-error class="error" *ngIf="signUpForm.controls['password'].hasError('minlength') && isSignSubmited">{{"Password must be of minimum 6 characters length"}}</mat-error>
+                <mat-error class="error" *ngIf="signUpForm.controls['password'].hasError('maxlength') && isSignSubmited">{{"Password must be of maximum 30 characters length"}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-field-frame" >
+                <img src="../../../assets/images/icon-name.png" alt="Name" class="img-icon name-icon"/>
+                    <mat-form-field>
+                      <mat-label>{{ 'Select Category' }}</mat-label>
+                      <select (change)="getSubCategory($event.target.value)" matNativeControl formControlName="categoryId" class="form-control">
+                          <option [value]="item._id" *ngFor="let item of categoryArr">{{item.name}}</option>
+                        </select>
+                    </mat-form-field>
+              </div>
+              <div class="form-field-frame">
+                  <img src="../../../assets/images/icon-name.png" alt="Name" class="img-icon name-icon"/>
+                    <mat-form-field>
+                        <mat-label>{{ 'Select Sub Category' }}</mat-label>
+                      <select  matNativeControl formControlName="subcategoryId" class="form-control">
+                          <option [value]="item._id" *ngFor="let item of subCategoryArr">{{item.name}}</option>
+                        </select>
+                    </mat-form-field>
+              </div> 
+
+              <div class="form-field-frame" >
+                <img src="../../../assets/images/icon-name.png" alt="Name" class="img-icon name-icon" />
+                <mat-form-field>
+                  <input type="number" matInput formControlName="numberOfBooking" placeholder="{{ 'No of Booking' }}" required
+                    maxlength="20">
+                  <mat-error class="error"
+                    *ngIf="signUpForm.controls['numberOfBooking'].hasError('required') && isSignSubmited">
+                    {{"Field is required"}}</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-field-frame" >
+                <img src="../../../assets/images/icon-name.png" alt="Name" class="img-icon name-icon" />
+              
+                  <mat-google-maps-autocomplete class="form-control input-underline input-lg" type="address" [addressLabelText]="formated_address" (onAutocompleteSelected)="onAutocompleteSelected($event)">
+                  </mat-google-maps-autocomplete>   
+
+              </div>
+              
+        </div>
+        <div class="form-field-footer">
+          <div class="left"><a [routerLink]="['/login']">{{ 'Login' }}</a></div>
+          <div class="right">
+            <button mat-stroked-button>{{ 'Sign Up' }} </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,53 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "live": "pm2 start npm -- start",
+    "start": "nodemon --inspect --exec babel-node -- app.js",
+    "restart": "pm2 restart app",
+    "production": "NODE_ENV=production pm2 start ./app.js --interpreter ./node_modules/babel-cli/bin/babel-node.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf build && babel . -d build --ignore node_modules && cp package.json build",
+    "serve": "pm2 start build/app.js --name=app",
+    "ri": "rm -rf node_modules && npm install"
+  },
+  "keywords": [],
+  "author": "Manpreet Singh",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.19.0",
+    "boom": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.5",
+    "express-validation": "^0.4.5",
+    "fs-extra": "^8.1.0",
+    "jimp": "^0.8.5",
+    "joi": "^7.3.0",
+    "jsonwebtoken": "8.1.0",
+    "md5": "^2.2.1",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.5.12",
+    "multiparty": "^4.2.1",
+    "nodemailer": "^6.3.0",
+    "npm-run-all": "^4.1.5",
+    "path": "^0.12.7",
+    "pm2": "^3.5.1",
+    "socket.io": "^2.3.0",
+    "stripe": "^7.1.0",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.1",
+    "validator": "^12.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "nodemon": "^1.19.0"
+  }
+}

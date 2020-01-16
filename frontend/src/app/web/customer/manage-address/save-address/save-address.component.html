@@ -1,0 +1,94 @@
+<section class="banner_section">
+    <div class="container marginTop">
+      <h2>{{actionLabel}} Address</h2>
+      <div class="row">
+        <div class="col-md-12">
+          <form [formGroup]="addressForm" enctype="multipart/form-data" (ngSubmit)="saveAddress()">
+              
+            <div class="row">
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <div class="form-group">
+                    <label for="disabledSelect">Pin Code</label>
+                    <input type="number" class="form-control input-underline input-lg" placeholder="Enter pin code" appInputRestriction="noSpecialChars" formControlName="pincode" required>
+                    <p class="error" *ngIf="addressForm.controls['pincode'].hasError('required') && isSubmited">Field is required</p>
+                  </div>
+                </fieldset>
+              </div>
+  
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                    <div class="form-group">
+                      <label for="disabledSelect">House No., Building Name</label>
+                      <input type="text" class="form-control input-underline input-lg" placeholder="Enter house No., building Name" formControlName="houseBuilding" required>
+                      <p class="error" *ngIf="addressForm.controls['houseBuilding'].hasError('required') && isSubmited">Field is required</p>
+                    </div>
+                </fieldset>
+              </div>
+
+              <div class="col-md-6"> 
+                <fieldset class="form-group">
+                    <div class="form-group">
+                      <label for="disabledSelect">Road Name, Area, Colony</label>
+                      <mat-google-maps-autocomplete class="form-control input-underline input-lg" type="address" [addressLabelText]="formated_address" (onAutocompleteSelected)="onAutocompleteSelected($event)">
+                        </mat-google-maps-autocomplete>  
+                    </div>
+                </fieldset>
+              </div>
+
+              <div class="col-md-6"> 
+                <fieldset class="form-group">
+                    <div class="form-group">
+                      <label for="disabledSelect">City</label>
+                      <input type="text" class="form-control input-underline input-lg" placeholder="Enter city name" formControlName="city" required>
+                      <p class="error" *ngIf="addressForm.controls['city'].hasError('required') && isSubmited">Field is required</p>
+                    </div>
+                </fieldset>
+              </div>
+
+              <div class="col-md-6"> 
+                <fieldset class="form-group">
+                    <div class="form-group">
+                      <label for="disabledSelect">State</label>
+                      <input type="text" class="form-control input-underline input-lg" placeholder="Enter state name" formControlName="state" required>
+                      <p class="error" *ngIf="addressForm.controls['state'].hasError('required') && isSubmited">Field is required</p>
+                    </div>
+                </fieldset>
+              </div>
+
+              <div class="col-md-6"> 
+                <fieldset class="form-group">
+                    <div class="form-group">
+                      <label for="disabledSelect">Country</label>
+                      <input type="text" class="form-control input-underline input-lg" placeholder="Enter country name" formControlName="country" required>
+                      <p class="error" *ngIf="addressForm.controls['country'].hasError('required') && isSubmited">Field is required</p>
+                    </div>
+                </fieldset>
+              </div>
+
+              <div class="col-md-6"> 
+                <fieldset class="form-group">
+                  <div class="form-group">
+                    <label for="disabledSelect">Name</label>
+                    <input type="text" class="form-control input-underline input-lg" placeholder="Enter your contact number" formControlName="name" required>
+                    <p class="error" *ngIf="addressForm.controls['name'].hasError('required') && isSubmited">Contact number is required</p>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="col-md-6"> 
+                <fieldset class="form-group">
+                    <div class="form-group">
+                      <label for="disabledSelect">Contact</label>
+                      <input type="text" class="form-control input-underline input-lg" placeholder="Enter contact number" formControlName="contact" required>
+                      <p class="error" *ngIf="addressForm.controls['contact'].hasError('required') && isSubmited">Field is required</p>
+                    </div>
+                </fieldset>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">{{actionLabel}} Address</button><br><br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>

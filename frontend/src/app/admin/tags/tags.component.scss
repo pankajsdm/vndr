@@ -1,0 +1,26 @@
+.mat-form-field {
+    width: 100%;
+}
+
+.img-label {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+:host ::ng-deep  [class*='icon-']:before {
+    font-family: 'primeicons' !important;
+}
+
+.ui-fluid ul{
+    border-color: 1px solid #ccc;
+}
+.package-image{
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 30px;
+}
+.section-cls{margin-top: 35px;}

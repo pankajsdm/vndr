@@ -1,0 +1,47 @@
+<div>
+  <div class="page-breadcrumb-frame d-flex justify-content-between align-items-center">
+    <div class="link-content">
+      <h1 class="text-muted">Vendor</h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/admin/dashboard']">Dashboard</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/admin/vendors']"><i class="pi pi-chevron-right"></i>
+            Vendor</a></li>
+        <li class="breadcrumb-item active"><i class="pi pi-chevron-right"></i>
+          {{ isEditable ? "Update" : 'Add'}} Vendor</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<form [formGroup]="vendorForm" (submit)="save()">
+      <div class="row">
+          <div class="col-lg-6">
+              <label>Create New or  Delete Existing Tag</label>
+              <fieldset class="form-group ui-fluid">
+                  <span class="ui-fluid">
+                    <p-autoComplete [(ngModel)]="tags" [suggestions]="results" (completeMethod)="search($event)"  styleClass="wid200" [minLength]="1" placeholder="search by tag section" field="name" [multiple]="true" [ngModelOptions]="{standalone: true}">
+                    </p-autoComplete>
+                </span>
+              </fieldset>
+          </div>
+      </div>
+            
+        
+      <!-- <div class="row">
+      <div class="col-lg-12">
+          <button type="submit" class="btn btn-primary">{{ isEditable ? "Update" : 'Add'}}</button>
+      </div>
+  
+      </div> -->
+      <div class="col-lg-8">
+        <div class="row"> 
+            <div class="col-lg-1">
+                <button type="submit" class="btn btn-primary">{{ isEditable ? "Update" : 'Add'}}</button>
+          </div>
+          <div class="col-lg-2">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" [routerLink]="['/admin/vendors']">{{"Back"}}</button> &nbsp;
+          </div>
+        </div>
+    </div>
+  </form>

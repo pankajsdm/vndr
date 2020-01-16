@@ -1,0 +1,41 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb mt-3">
+      <li class="breadcrumb-item"><a href="javascript:void(0)">Japanese Cuisine</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Catering</li>
+    </ol>
+  </nav>
+
+  <div class="custom-tabs my-4">
+    <ul class="list-group flex-row">
+      <li class="list-group-item mb-0">Dates</li>
+      <li class="list-group-item">Event</li>
+    </ul>
+  </div>
+
+  <!-- <h3 class="main_title mt-3" >Popular around you</h3> -->
+
+  <ul class="category_list" *ngIf="vendors && vendors">
+    <li *ngFor="let vendor of vendors">
+      <span class="category_image">
+        <a routerLink="/vendor/{{vendor.slug}}">
+          <img *ngIf="!vendor.image" src="assets/images/flower.png" [alt]="vendor.companyName" />
+          <img *ngIf="vendor.image" src="{{backendUrl}}users/{{vendor._id}}/{{vendor.image}}" alt="{{vendor.image}}"
+            class="w-100 h-100" />
+        </a>
+        <a href="javascript:void(0)" class="heart_icon"></a>
+      </span>
+      <h5>
+        {{vendor.companyName}}
+        <em>{{vendor.subcategoryId.name}}</em>
+        <small>
+          <p>
+            <span><i class="fa fa-star"></i></span>
+            <span>{{vendor.rating}}</span>
+            <!-- <span>( 528 )</span> -->
+          </p>
+        </small>
+      </h5>
+    </li>
+  </ul>
+</div>

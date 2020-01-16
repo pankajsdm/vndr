@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg fixed-top" [ngClass]="{'collapsed':collapedSideBar}">  
+    <div class="logo">
+        <img src="../../assets/images/logo-new.png" alt="Brand Logo" class="logo">
+    </div>
+  <div class="collapse navbar-collapse">   
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown profile-dropdown" ngbDropdown>
+        <a class="nav-link" ngbDropdownToggle>
+          <img src="../../../../assets/images/no-avtar.png" alt="profile pic" class="avtar-pic"> 
+          <svg xmlns="http://www.w3.org/2000/svg" width="6.98" height="3.995" viewBox="0 0 6.98 3.995">
+            <path id="down-arrow" d="M1339.16,29.855l-3.017-3.039a.482.482,0,0,1,0-.676.472.472,0,0,1,.67,0l2.681,2.7,2.681-2.7a.472.472,0,0,1,.67,0,.482.482,0,0,1,0,.676l-3.017,3.039a.471.471,0,0,1-.67,0Z" transform="translate(-1336.005 -26)" fill="#fff" opacity="0.5"/>
+          </svg>
+        </a>
+        <div class="dropdown-menu-right user-dropdown" ngbDropdownMenu>
+          <a class="dropdown-item" (click)="onLoggedout()">
+            {{ 'Log Out'}} <i class="fa fa-fw fa-power-off"></i>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,106 @@
+.comming_soon{
+    min-height: 100vh; 
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+        background: url(../../assets/images/coming_bg.png) no-repeat top left rgba(64,31,94,0.5);
+        background-size: cover;
+    .timmer{ 
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 25px;
+        right:36px;
+        left: 30px;
+        .logo{
+            img{
+                width: 86px;
+            }
+        }
+        .time_section{
+            width: 400px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center; 
+            span{
+                font-size: 29px;
+                text-align: center;
+                em{
+                    display: block;
+                    font-size: 13px;
+                    font-weight: lighter;
+                    font-style: normal;
+                }
+            }
+        }
+    }
+    .content{    
+        text-align: center;
+        h3{
+            font-size: 100px;
+            font-weight: bold;  
+            color: #fff;
+            margin:40px 0 40px 0;
+        }
+        a{
+            display: block;
+            width: 250px;
+            max-width: 95%;
+            height: 55px;
+            border-radius: 33px;
+            color: #fff;
+            font-size: 20px;
+            margin: 12px auto;
+            line-height: 55px;
+            padding: 0px;
+        }
+        .btn-yellow{
+            background: #E5AF30;
+            text-transform: uppercase;
+            &:hover{
+                background: #DB9D0B;
+            }
+        }
+        .btn-line{
+            border: 1px solid #fff;
+            font-size: 17px;
+            &:hover{
+                background: rgba(255,255,255,0.15);
+            }
+        }
+    }
+}
+@media(max-width:1000px){
+    .comming_soon{
+        .timmer{
+            top: 10px;
+            right: 10px;
+            left: 10px;
+            .time_section{
+                 span{
+                    font-size: 22px;
+                }
+            }
+            .logo{
+                img {
+                width: 50px;
+            } 
+            }
+        } 
+        .content{
+            h3 {
+                font-size: 40px;
+                margin: 20px 0 20px 0;
+            } 
+            a{
+                font-size: 16px;
+                line-height: 40px;
+                height: 40px;
+            }
+        }
+    } 
+}

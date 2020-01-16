@@ -1,0 +1,61 @@
+<div class="container-fluid">
+<header class="row">
+  <nav class="navbar site-nav">
+    <a class="navbar-brand" href="javascript:void(0)">
+      <img src="../../assets/images/logo-new.png" alt="Brand Logo" class="logo">
+    </a>
+    <div class="header_navbar"> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="mediaFunction(mediaCss)">
+           <img src="../../../../assets/images/menu.svg" alt=""/>
+          </button>
+      <div class="navbar menu-links" [ngClass]="{'hide_menu':!mediaCss}" >
+          {{cartCount}}
+        <a class="nav-item nav-link active" (click)="open(mymodal)">Message</a>
+        <a class="nav-item nav-link" href="#">Help</a>
+        <a class="nav-item nav-link" href="#">Booking</a>
+        <a class="nav-item nav-link green-link" routerLink="/login" *ngIf="!loginUser">Become a vendor</a>
+        <a class="nav-item nav-link green-link" routerLink="/customer/" *ngIf="loginUser">Profile</a>
+        <a class="nav-item nav-link green-link" href="javascript:void(0)"  (click)="onLoggedout()" *ngIf="loginUser">Logout</a>
+      </div>
+    </div>
+  </nav>
+</header>
+</div>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>      
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      
+    </div>
+    <div class="modal-body" *ngIf="cartCount>0">
+        <p class="modal-title" >From {{cartArr[0].companyName}}</p>
+        <table  class="table table-striped">
+            <thead>
+              <tr>
+                <th>Items</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cart of cartArr">
+                  <td>{{cart.packageName}}<br>{{cart.itemName}}</td>
+                  <td>${{cart.packagePrice}}</td>
+                </tr>
+                <!-- etc -->
+              </tbody>
+          </table>
+    </div>
+    <div class="modal-body" *ngIf="cartCount==0">
+        <p class="modal-title" >No item in the cart</p>
+    </div>
+    <div class="modal-footer" *ngIf="cartCount>0 && loginUser">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Request to Book</button>
+    </div>
+    <div class="modal-footer" *ngIf="cartCount>0 && !loginUser">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('login')">Login</button>
+      </div>
+  </ng-template>
+   

@@ -1,0 +1,48 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mt-3">
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Japanese Cuisine</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Catering</li>
+      </ol>
+    </nav>
+
+</div>
+
+<section class="banner_section">
+  <div class="images_box">
+    <span class="first_image"><img src="../../../assets/images/cr7isp2h.png" alt=""/></span>
+    <span class="two_image">
+      <img src="../../../assets/images/4p3uuwnv.png" alt=""/>
+      <img src="../../../assets/images/4u9tuypo.png" alt=""/>
+    </span>
+  </div>
+
+  <a href="javascript:void(0)" class="heart_icon"></a>
+  <a href="javascript:void(0)" class="view_btn btn btn-light btn-lg">View Photo</a>
+</section>
+
+<div class="container">
+  <h4>{{vendors.companyName}}</h4>
+  <h3><em class="star"></em>1.9 K added to favourites</h3>
+  <p>{{vendors.aboutMe}}</p>
+
+
+    <div class="section-container" *ngFor="let items of vendors.items">
+      <h3>{{items._id}}</h3>
+      <ul class="vendor_list row">
+          <li *ngFor="let section of items.section">
+            <span class="category_image">
+              <a routerLink="/item/{{section.itemSlug}}">
+                <img *ngIf="section.itemImage==''" src="assets/images/flower.png" alt="" />
+                <img *ngIf="section.itemImage!=''" src="{{backendUrl}}items/{{section.itemId}}/350x220/{{section.itemImage}}" alt="{{section.itemImage}}" />
+              </a>
+              <a href="javascript:void(0)" class="heart_icon"></a>
+            </span>
+            <h5>{{section.itemName}}</h5>         
+            <p>{{section.itemDescription}}</p>
+            <p>Starting at ${{section.price}}</p>
+          </li>
+      </ul>
+    </div>
+
+</div>

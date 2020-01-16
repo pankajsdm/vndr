@@ -1,0 +1,156 @@
+<div class="container-fluid">
+  <div class="">
+    <div class="row">
+      <div class="banner-top">
+        <p>Joy of spreading among customers</p>
+      </div>
+      <div class="container">
+        <div class="inner-content">
+          <div class="search-col">
+            <input type="search" placeholder=" Try Japanese Cuisine" />
+          </div>
+          <div class="plan-section">
+            <div class="custom-tabs mt-4">
+              <ul class="list-group flex-row">
+                <li class="list-group-item mb-0">Dates</li>
+                <li class="list-group-item">Event</li>
+              </ul>
+            </div>
+            <h2>Hi abid, Let's plan your party!</h2>
+
+            <owl-carousel-o [options]="customOptions">
+              <ng-template carouselSlide *ngFor="let cat of homeData.categories">
+                <div routerLink="/category/{{cat.slug}}" class="slide_box">
+                  <div class="slider_image">
+                    <img src="{{backendUrl}}categories/{{cat._id}}/310x290/{{cat.image}}" alt="" />
+                  </div>
+                  <span>{{cat.name}}</span>
+                </div>
+              </ng-template>
+            </owl-carousel-o>
+
+            <div class="popular-section" *ngIf="homeData.popularArroundYou?.length>0">
+              <h2>Popular around you</h2>
+              <div class="row">
+                <div class="col-sm-6 col-md-4 mb-4 iteme_image" *ngFor="let popularItem of homeData.popularArroundYou"
+                  routerLink="/vendor/{{popularItem.slug}}">
+                  <div class="image_box">
+                      <img *ngIf="!popularItem.image" src="assets/images/flower.png" [alt]="popularItem.companyName" />
+                      <img *ngIf="popularItem.image" src="{{backendUrl}}users/{{popularItem._id}}/{{popularItem.image}}"
+                                      alt="{{popularItem.image}}" class="w-100 h-100" />
+                  </div>
+                  <div class="card-caption">
+                    <p>{{popularItem.companyName}}</p>
+                    <p>{{popularItem.categoryId.name}}</p>
+                    <p>
+                      <span><i class="fa fa-star"></i></span>
+                      <span>{{popularItem.rating}}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a class="end-touch">
+              Show all Trending Choices
+              <svg width="73.178" height="54.186" viewBox="0 0 73.178 54.186">
+                0 <g id="Group_1149" data-name="Group 1149" transform="translate(-19.979 -52.811)">
+                  <g id="login" transform="translate(20.879 21.809)">
+                    <line id="Line_38" data-name="Line 38" x2="25.82" y2="25.82" transform="translate(45.185 32.275)"
+                      fill="none" stroke="#7383bf" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                      stroke-width="1.8" />
+                    <line id="Line_39" data-name="Line 39" y1="25.82" x2="25.82" transform="translate(45.185 58.095)"
+                      fill="none" stroke="#7383bf" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                      stroke-width="1.8" />
+                    <line id="Line_40" data-name="Line 40" x1="71.005" transform="translate(0 58.095)" fill="none"
+                      stroke="#7383bf" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                      stroke-width="1.8" />
+                  </g>
+                </g>
+              </svg>
+            </a>
+            <div class="mt-4 featured">
+              <img src="assets/images/clown.png" alt="" class="w-100" />
+              <div class="overlay-text">
+                <p>Introducing</p>
+                <h3>clown dance</h3>
+                <span>on find a vndr experience</span>
+                <button class="btn primary-btn">Learn More</button>
+              </div>
+            </div>
+
+            <div class="mt-5 top-rated" *ngIf="homeData.topRatedVendor?.length>0">
+              <h2 class="black mb-2">Top-rated vendors</h2>
+              <p class="gray-text-lg">
+                Book activities led by local hosts on your next event
+              </p>
+              <div class="row mt-4">
+                <div class="col-sm-6" *ngFor="let topRatedVendor of homeData.topRatedVendor; let i=index">
+                  <a *ngIf="i<2" routerLink="/vendor/{{topRatedVendor.slug}}">
+                    <div class="rated_image mb-3">
+                        <img *ngIf="!topRatedVendor.image" src="assets/images/flower.png" [alt]="topRatedVendor.companyName" />
+                        <img *ngIf="topRatedVendor.image" src="{{backendUrl}}users/{{topRatedVendor._id}}/{{topRatedVendor.image}}"
+                                        alt="{{topRatedVendor.image}}" class="w-100 h-100" />
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <a class="end-touch">
+              Show all Top rated vendors
+              <svg width="73.178" height="54.186" viewBox="0 0 73.178 54.186">
+                <g id="Group_1149" data-name="Group 1149" transform="translate(-19.979 -52.811)">
+                  <g id="login" transform="translate(20.879 21.809)">
+                    <line id="Line_38" data-name="Line 38" x2="25.82" y2="25.82" transform="translate(45.185 32.275)"
+                      fill="none" stroke="#7383bf" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                      stroke-width="1.8" />
+                    <line id="Line_39" data-name="Line 39" y1="25.82" x2="25.82" transform="translate(45.185 58.095)"
+                      fill="none" stroke="#7383bf" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                      stroke-width="1.8" />
+                    <line id="Line_40" data-name="Line 40" x1="71.005" transform="translate(0 58.095)" fill="none"
+                      stroke="#7383bf" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                      stroke-width="1.8" />
+                  </g>
+                </g>
+              </svg>
+            </a>
+            <div class="user-download">
+              <img src="assets/images/phone.png" alt="" class="phone" />
+              <div class="right">
+                <h2>You can easily have a comfort of booking at home</h2>
+                <p>
+                  Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s, when an unknown printer took a galley of type
+                  and scrambled it to make a type specimen book. It has survived
+                  not only five centuries, but also the leap into electronic
+                  typesetting, remaining essentially unchanged.
+                </p>
+                <h3>
+                  Download App Now?
+                </h3>
+                <div class="btn-group">
+                  <a href="javascript:void(0)"><img src="assets/images/g-btn.png" alt="" /></a>
+                  <a href="javascript:void(0)"><img src="assets/images/app-btn.png" alt="" /></a>
+                </div>
+              </div>
+            </div>
+            <div class="subscribe-box">
+              <div class="pr-0 pr-sm-5">
+                <p>Subscribe Newsletter for Keep Updated</p>
+                <p>
+                  But I must explain to you how all this mistaken idea of
+                  denouncing pleasure and prasising pain was born and I complete
+                  account of the system, and expound the actual teachings.
+                </p>
+              </div>
+              <button class="btn secondary-btn">Subscribe</button>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

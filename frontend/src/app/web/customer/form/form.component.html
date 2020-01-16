@@ -1,0 +1,38 @@
+<section class="banner_section">
+  <div class="container marginTop">
+    <h2>Edit Profile </h2>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <form [formGroup]="userForm" enctype="multipart/form-data" (ngSubmit)="updateProfile()">
+            
+          <fieldset class="form-group">
+              <div class="form-group">
+                <label for="disabledSelect">Name</label>
+                <input type="text" class="form-control input-underline input-lg" placeholder="Write your name" appInputRestriction="noSpecialChars" formControlName="name" required>
+                <p class="error" *ngIf="userForm.controls['name'].hasError('required') && isSubmited">Name is required</p>
+              </div>
+            </fieldset>   
+
+            <fieldset class="form-group">
+                <div class="form-group">
+                  <label for="disabledSelect">Contact</label>
+                  <input type="text" class="form-control input-underline input-lg" placeholder="Enter your contact number" formControlName="phoneNumber" required>
+                  <p class="error" *ngIf="userForm.controls['phoneNumber'].hasError('required') && isSubmited">Contact number is required</p>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <div class="form-group">
+                  <label for="disabledSelect">About Yourself</label>
+                  <textarea  class="form-control input-underline input-lg" placeholder="Enter your full address" formControlName="aboutMe" required></textarea>
+                  <p class="error" *ngIf="userForm.controls['aboutMe'].hasError('required') && isSubmited">Write some description about yourself</p>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">Update Profile</button><br><br>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

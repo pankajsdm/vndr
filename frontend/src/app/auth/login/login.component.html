@@ -1,0 +1,64 @@
+<div class="login-page" [@routerTransition]>
+  <div class="login-left-pannel animated fadeInLeft">  
+  </div>
+
+  <div class="login-right-pannel">
+    <div class="top-corner  animated fadeInRight">
+      <!-- <img src="../../../assets/images/login-right-corner.png" alt="corner" /> -->
+    </div>
+    <div class="from-frame">          
+       
+      <!-- <div><img src="../../../assets/images/VNDR-logo.png" alt="VNDR"/></div> -->
+      <h1>{{ 'Sign In to your account'}}</h1>
+      <!-- <input [(ngModel)]="message" />
+      <button (click)="sendMessage()">Send</button> -->
+      <form [formGroup]="loginForm" (submit)="onLoggedin()">
+        <div class="white-frame">
+          <div class="form-field-frame">
+            <img src="../../../assets/images/email.png" alt="email" class="img-icon"/>
+            <mat-form-field>
+              <input matInput formControlName="email" required placeholder="{{ 'Email Address'}}">
+              <mat-error class="error" *ngIf="loginForm.controls['email'].hasError('required') && isSubmited">{{"Email is required"}}</mat-error>
+              <mat-error class="error" *ngIf="loginForm.controls['email'].hasError('email') && loginForm.controls['email'].value != ''">{{"Invalid email"}}</mat-error>
+              <mat-error class="error" *ngIf="loginForm.controls['email'].hasError('maxlength') && isSubmited">
+                {{"Email must be of maximum 100 characters length"}}</mat-error>
+            </mat-form-field>
+            <!-- <div class="icon-box"><img src="../../../assets/images/tick.png" alt="approve"/></div> -->
+          </div>
+
+          <div class="form-field-frame passlock">
+            <img src="../../../assets/images/password.png" alt="email"  class="img-icon"/>
+            <mat-form-field>
+              <input matInput formControlName="password" type="password" required placeholder="{{ 'Password'}}">
+              <mat-error *ngIf="loginForm.controls['password'].hasError('required') && isSubmited">{{"Password is required"}}
+              </mat-error>
+            </mat-form-field>
+            <!-- <div class="icon-box"><a href="javascript:void(0);"><img src="../../../assets/images/view.png" alt="View"/></a></div> -->
+          </div>
+        </div>
+        <div class="form-field-footer">
+            <div class="left"><a [routerLink]="['/forgot-password']">{{ 'Forgot Password'}}</a></div>
+            <div class="left"><a [routerLink]="['/signup']">{{ 'Sign Up'}}</a></div>
+            <div class="right">
+              <button mat-stroked-button>{{ 'Log in'}} </button>
+            </div>
+        </div>
+
+        <div class="form-field-footer">
+          <div class="left">
+              <button type="button" (click)="initiateSocialLogin('facebook')"  class="btn btn-primary btn-social">Login With Facebook</button>&nbsp;&nbsp;
+              <button type="button" [routerLink]="['/signup-vendor']"  class="btn btn-primary btn-social">Sign Up as Vendor</button>&nbsp;&nbsp;
+              <button type="button" (click)="initiateSocialLogin('google')"  class="btn btn-secondary btn-social">Login With Google</button>
+          </div>
+          
+      </div>
+
+      </form>
+    </div>
+  </div>
+
+    
+</div>
+
+
+

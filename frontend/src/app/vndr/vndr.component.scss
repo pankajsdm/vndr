@@ -1,0 +1,43 @@
+* {
+    -webkit-transition: margin-left 0.2s ease-in-out;
+    -moz-transition: margin-left 0.2s ease-in-out;
+    -ms-transition: margin-left 0.2s ease-in-out;
+    -o-transition: margin-left 0.2s ease-in-out;
+    transition: margin-left 0.2s ease-in-out;
+  }
+  .main-container {
+    // margin-top: 56px;
+    // margin-left: 235px;
+    // padding: 15px;
+    // -ms-overflow-x: hidden;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
+    // position: relative;
+    // overflow: hidden;
+  
+    margin-left: 235px;
+    padding: 70px 15px 15px;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    .main-container-frame{
+      flex: 1 1 auto;
+    }
+  }
+  
+  .collapsed {
+    margin-left: 60px;
+  }
+  
+  ::ng-deep{
+    
+    
+    
+  }
+  
+  

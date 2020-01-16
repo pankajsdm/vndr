@@ -1,0 +1,34 @@
+<section class="banner_section">
+
+    <div class="container">
+        <div class="row marginTop">
+            <div class="col-lg-3">
+                <img *ngIf="filename==''" src="/assets/images/no-avtar.png" alt="" width="250" height="200" class="img-rounded img-responsive" />
+                <img *ngIf="filename!=''" [src]="filename" alt="" width="250" height="200" class="img-rounded img-responsive" />
+                <p-fileUpload #fileUpload accept="image/*" auto="true" [styleClass]="pupload" mode="basic" name="myfile[]" id="myFiles" name="myFiles" customUpload="true" (uploadHandler)="onFileSelection($event, fileUpload)" chooseLabel="Change Profile Picture"></p-fileUpload>
+            </div>
+            <div class="col-lg-7">
+                <div class="well profile">
+                    <div class="col-sm-12">
+                        <div class="col-xs-12 col-sm-8">
+                            <h2>{{getUser.name}}</h2>
+                            <p><strong>Email: </strong>{{getUser.email}}</p>
+                            <p><strong>Contact: </strong>{{getUser.phoneNumber}}</p>
+                            <p><strong>Description: </strong>{{getUser.aboutMe}}</p>
+                            <p *ngIf="getUser.defaultCustomerAddress && getUser.defaultCustomerAddress.pincode!=''">
+                                <strong>Address: </strong>
+                                {{getUser.defaultCustomerAddress.houseBuilding}}, {{getUser.defaultCustomerAddress.area}}, {{getUser.defaultCustomerAddress.city}}, {{getUser.defaultCustomerAddress.state}}, {{getUser.defaultCustomerAddress.country}}<br> {{getUser.defaultCustomerAddress.pincode}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                    <p>
+                        <a routerLink="/customer/edit">Edit profile</a><br>
+                        <a routerLink="/customer/manage-address">Manage Address</a>
+                    </p>
+            </div>
+        </div>
+    </div>
+</section>

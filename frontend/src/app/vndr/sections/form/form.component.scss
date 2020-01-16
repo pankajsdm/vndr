@@ -1,0 +1,9 @@
+.package-image{
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 30px;
+}
+
+:host ::ng-deep  [class*='icon-']:before {
+    font-family: 'primeicons' !important;
+}

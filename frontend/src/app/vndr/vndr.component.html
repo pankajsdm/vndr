@@ -1,0 +1,9 @@
+<app-header [collapedSideBar]="collapedSideBar"></app-header>
+<app-sidebar (collapsedEvent)="receiveCollapsed($event)"></app-sidebar>
+<section class="main-container" [ngClass]="{collapsed: collapedSideBar}">
+  <div class="main-container-frame">
+    <!-- <app-page-header></app-page-header> -->
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
+</section>

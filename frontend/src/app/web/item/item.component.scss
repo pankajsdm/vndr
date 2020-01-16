@@ -1,0 +1,162 @@
+.booking_banner {
+    display: inline-block;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 350px;
+    img {
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+    }
+}
+
+
+.owl-carousel.owl-drag{
+    .owl-item{
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}
+
+h2 {
+    color: #85AC95;
+    text-transform: uppercase;
+    font-size: 60px;
+}
+
+p {
+    color: #808080;
+    font-size: 16px;
+}
+
+.item_price {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dadada;
+    align-items: center;
+
+    .form-check {
+        padding-left: 40px;
+
+        label {
+            font-size: 30px;
+            color: #3D3D3D;
+        }
+
+        em {
+            font-style: normal;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            // border-radius: 100%;
+            border: 1px solid #cccbcb;
+            position: absolute;
+            left: 0;
+            top: 10px;
+            background: #fff;
+        }
+
+        input[type=radio] {
+            position: absolute;
+            left: 0;
+            margin-left: 0px;
+            width: 25px;
+            height: 25px;
+            top: 6px;
+            z-index: 1;
+            opacity: 0; 
+            &:checked+em {
+                background: #85AC95;
+                border-color: #85AC95;
+    
+                &::before {
+                    content: "";
+                    width: 11px;
+                    height: 11px;
+                    background: #fff;
+                    border-radius: 100%;
+                    display: inline-block;
+                    position: absolute;
+                    z-index: 1;
+                    left: 6px;
+                    top: 6px;
+                }
+            }
+        }
+    }
+
+    span {
+        color: #646464;
+        font-size: 22px;
+        font-weight: 400;
+    }
+}
+
+.description_text {
+    font-size: 22px;
+    color: #3D3D3D;
+    display: inline-block;
+    width: 100%;
+}
+
+.book_now {
+    background: #556080;
+    font-size: 24px;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 0px;
+}
+
+@media(max-width:767px) {
+    h3 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .item_price {
+        .form-check {
+            label {
+                font-size: 16px;
+            }
+        em{
+            width: 15px;
+            height: 15px;
+            top: 5px;
+        }
+            input[type=radio] {
+                width: 15px;
+                height: 15px;
+                top: 0px;
+                &:checked+em { 
+                    &::before {
+                        width: 7px;
+                        height: 7px;
+                        left: 3px;
+                        top: 3px;
+                    }
+                }
+            }
+        }
+
+        span {
+            font-size: 14px;
+        }
+    }
+
+    .description_text {
+        font-size: 16px;
+    }
+
+    .book_now {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+}

@@ -1,0 +1,48 @@
+<div>
+  <div class="page-breadcrumb-frame d-flex justify-content-between align-items-center">
+    <div class="link-content">
+      <h1 class="text-muted">Services</h1>
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a [routerLink]="['/vendors/dashboard']">Dashboard</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/vendors/sections']"><i class="pi pi-chevron-right"></i>Sections</a></li>
+          <li class="breadcrumb-item active"><i class="pi pi-chevron-right"></i>{{ isEditable ? "Update" : 'Add'}} </ol>
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="sectionForm"  (submit)="save()">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-lg-12">
+          <fieldset class="form-group">
+            <div class="form-group">  
+              <label for="disabledSelect">Section Name<em>*</em></label>
+              <input appInputRestriction="noSpecialChars" formControlName="name" class="form-control" placeholder="Enter Section Name" maxlength="20">
+              <p class="error" *ngIf="sectionForm.controls['name'].hasError('required') && isSubmited">Section is required</p>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-lg-12">
+          <fieldset class="form-group">
+            <label>Description<em>*</em></label>
+            <textarea formControlName="description" class="form-control"
+              placeholder="Enter description"></textarea>
+              <p class="error" *ngIf="sectionForm.controls['description'].hasError('required') && isSubmited">Description is required</p>  
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="row"> 
+            <div class="col-lg-1">
+                <button type="submit" class="btn btn-primary">{{ isEditable ? "Update" : 'Create' }}</button>
+          </div>
+          <div class="col-lg-2">
+                &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" [routerLink]="['/vendors/sections']">{{"Back"}}</button> &nbsp;
+          </div>
+        </div>
+    </div>
+  </div>
+</form>
