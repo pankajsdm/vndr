@@ -28,7 +28,7 @@
     "fs-extra": "^8.1.0",
     "jimp": "^0.8.5",
     "joi": "^7.3.0",
-    "jsonwebtoken": "8.1.0",
+    "jsonwebtoken": "9.0.0",
     "md5": "^2.2.1",
     "mongodb": "^3.3.2",
     "mongoose": "^5.5.12",
